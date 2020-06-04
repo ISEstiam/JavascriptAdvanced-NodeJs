@@ -1,0 +1,17 @@
+{
+  "name": "exerciceexpressapps",
+  "version": "1.0.0",
+  "description": "Exercice de modelisation d'une application utilisant le frameworke express js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "author": "Ihsen SELLAOUTI",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.17"
+  }
+}
