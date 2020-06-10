@@ -27,9 +27,9 @@ router.post('/add', (req, res) => {
 router.get('/getbyid/:id', (req, res) =>{
     let id = req.params.id;
     console.log(id);
-    var bookService = new BookService();
+    var bookService = new BookService(req, res);
     var book = bookService.getById(id);
-    var authorService = new AuthorService();
+    var authorService = new AuthorService(req, res);
     var author = authorService.getById(book.id_author);
     console.log({"book": book, "author":author});
     res.json({"book": book, "author":author});
@@ -38,23 +38,24 @@ router.get('/getbyid/:id', (req, res) =>{
 router.get('/getbyname/:name', (req, res) =>{
     let name = req.params.name;
     console.log(name);
-    var bookService = new BookService();
+    var bookService = new BookService(req, res);
     var book = bookService.getByName(name);
     console.log(book);
     res.json(book);
 });
 
-router.put('/update/', (req, res) => {
-    let bookUpdate = new Book(req.body.id, req.body.name, req.body.ISBN, req.body.price);
+router.put('/update/:id', (req, res) => {
+    let id = req.params.id;
+    let bookUpdate = new Book(req.body);
     console.log(bookUpdate);
-    var bookService = new BookService();
-    bookService.update(bookUpdate);
+    var bookService = new BookService(req, res);
+    bookService.update(id, bookUpdate);
     res.end("Le livre est mis à jour avec succès");
 });
 
 router.delete('/delete/:id', (req, res) => {
     var id = req.params.id;
-    var bookService = new BookService();
+    var bookService = new BookService(req, res);
     bookService.delete(id);
     res.end("Le livre est supprimé");
 });

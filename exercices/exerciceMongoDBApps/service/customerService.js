@@ -1,57 +1,75 @@
 var Customer = require('../model/customer');
 
-var tabCustomer = new Array();
+// var tabCustomer = new Array();
 
 class CustomerService{
-    constructor(){
-       
-    }
+    constructor(req, res){
+        this.req = req;
+        this.res = res;
+     }
 
-    add(Customer) {
-        tabCustomer.push(Customer);
-        console.log(tabCustomer);
+     add(newCustomer) {
+        newCustomer.save((err) => {
+            if(err) this.res.send(err);
+            else this.res.send("Client ajouté");
+        });
     }
 
     all() {
-        console.log(tabCustomer);
-        return tabCustomer;
+        Customer.find((err, customers) =>{
+            if(err) res.send(err);
+            else
+            {
+                res.json(customers);
+                console.log(customers.length)
+            } 
+        });
     }
 
     getById(id)
     {
-        var customer = tabCustomer.find(customer => customer._id == id);
-        return customer;
+        Customer.findById(id, (err, customer) => {
+            if(err) res.send(err);
+            else return customer;
+        });
     }
 
     getByFirstName(firstName)
     {
-        var customer = tabCustomer.find(customer => customer.first_name == firstName);
-        return customer;
+        Customer.findOne({first_name: firstName}, (err, customer) => {
+            if(err) res.send(err);
+            else return customer;
+        });
     }
 
-    update(customerUpdate)
+    update(id, customerUpdate)
     {
-        for(var cpt in tabCustomer)
-        {
-            if(tabCustomer[cpt]._id == customerUpdate._id)
-            {
-                tabCustomer[cpt].first_name = customerUpdate.first_name;
-                tabCustomer[cpt].last_name = customerUpdate.last_name;
-                tabCustomer[cpt].email = customerUpdate.email;
-                break;
+        Customer.findById(id, (err, customer) => {
+            if(err) res.send(err)
+            else{
+                customer.first_name = customerUpdate.first_name;
+                customer.last_name = customerUpdate.last_name;
+                customer.email = customerUpdate.email;
+                
+                customer.save((err) => {
+                    if (err) res.send(err);
+                    else res.send("Mise à jour OK");
+                });
             }
-        }
+        });
+
+        customerUpdate.save((err) => {
+            if (err) res.send(err);
+            else res.send("Mise à jour OK");
+        });
     }
 
     delete(id)
     {
-        for( var cpt in tabCustomer)
-        {
-            if(tabCustomer[cpt]._id == id)
-            {
-                tabCustomer.splice(cpt, 1);
-            }
-        }
+        Customer.remove({_id:id}, (err) => {
+            if (err) res.send(err);
+            else res.send("Client supprimé OK");
+        });
     }
 }
 
