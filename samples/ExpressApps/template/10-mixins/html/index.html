@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mixins in Pug</title>
+    <style>
+      .comment {
+          font-family : sans-serif;
+          line-height: 1.5;
+          padding: 10px;
+          border: 1px solid #555;
+          width: 250px;
+      }
+      
+      .date {
+          font-size: 85%,
+          text
+      }
+      
+      .author {
+          font-size: 110%;
+          font-weight: bold;
+      }
+      
+      .text {
+          font-size: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="comment"> 
+      <div class="date">04/06/2020</div>
+      <div class="author">Ihsen SELLAOUTI</div>
+      <div class="text">Ce cours est interessant</div>
+    </div>
+    <div class="comment"><em>(Publié par Admin)</em>
+      <div class="date">01/06/2020</div>
+      <div class="author">Mark</div>
+      <div class="text">Bonjour à Tous</div>
+    </div>
+    <div class="comment">
+      <div class="date">02/06/2020</div>
+      <div class="author">Bruce</div>
+      <div class="text">c'était amusant</div>
+    </div>
+  </body>
+</html>
