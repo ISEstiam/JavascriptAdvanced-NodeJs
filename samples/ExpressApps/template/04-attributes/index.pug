@@ -1,0 +1,21 @@
+doctype transitional
+html
+    head
+        title= "Exemple d'utilisation des attributes"
+    body
+        input(type="password" name="inpPwd" data-js=`${5<2 ? 'OK':'NOT OK!'}`)
+
+        - const myClasses = ["class1", "class2", "class3"]
+        div.my-div(class=myClasses)
+
+        - const myAttributes = {"src":"myPhoto.png", "alt":"Ce ci ma photo"}
+        img&attributes(myAttributes)
+
+        - const myStyles = {"color":"red", "background-color":"blue"}
+        div(style=myStyles)
+
+        // doctype html
+        //input(type="text" disabled)
+
+        // doctype transitional
+        input(type="text" disabled="true")

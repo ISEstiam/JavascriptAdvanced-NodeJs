@@ -1,0 +1,51 @@
+mixin comment(commentData)
+    .comment
+        if commentData.postByAdmin
+            em (Publié par Admin)
+        .date= commentData.date
+        .author= commentData.author
+        .text= commentData.text
+
+
+doctype html
+html
+    head 
+        title Mixins in Pug
+        style.
+            .comment {
+                font-family : sans-serif;
+                line-height : 1.5;
+                padding : 10px;
+                border : 1px solid #555;
+                width : 250px
+            }
+
+            .date {
+                font-size : 85%;
+                text-align : right;
+            }
+
+            .author {
+                font-size : 110%;
+                font-weight : bold;
+            }
+
+            .text {
+                font-size : 100%;
+            }
+    body
+        .comment
+            .date 11/06/2020
+            .author Bruno
+            .text Ce cous est interessant
+
+        .comment
+            .date 15/06/2020
+            .author Julien
+            .text C'est amusant
+
+        - const c = {postByAdmin : true, date:"01/06/2020", author:"Alin", text:"cool"}
+        +comment(c)
+
+        - const c1 = {postByAdmin: false, date:"30/06/2020", author:"Bruce", text:"Génial"}
+        +comment(c1)

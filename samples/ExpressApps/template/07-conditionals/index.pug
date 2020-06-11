@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title= "Gestion des conditions"
+    body
+        - let user = {name : "Domenic", LoggedIn : false, LastLogin :13}
+        if user.LoggedIn
+            p
+                | Bienvenu
+                strong #{user.name}
+
+        else if user.LastLogin < 10
+            p votre dernière connexion etait pendant les #{user.LastLogin} derniers minutes
+            a(href="/login") Log in Again
+        else 
+            a(href="/login") Log in

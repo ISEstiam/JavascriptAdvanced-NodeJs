@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        title Case Statement
+    body
+        // orderStatus = Pending | InTransit | Completed
+
+        - const orderStatus = "InTransit"
+        case orderStatus
+            when "Pending"
+                p Votre commande a été passée et sera envoyée sous peu
+            when "InTransit"
+                p Votre commande est en mouvement, vous devriez bientôt la recevoir
+            when "Completed"
+                p Votre commande est terminée
+            default
+                p  Désolé, nous savons pas ce qui s'est passé avec votre commande

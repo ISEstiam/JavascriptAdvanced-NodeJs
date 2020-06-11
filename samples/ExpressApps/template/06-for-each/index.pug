@@ -1,0 +1,20 @@
+doctype html
+html
+    head
+        title for/each loop
+    body
+        each n, i in [34,2,3,4,5]
+            p= i + "- " + n
+
+        - const names = ["Sophie", "Mark", "Bruno"]
+        each name, i in names
+            p= i + " - " + name
+
+        each n, i in []
+            p=i + " - " + n
+        else
+            strong Aucune valeur ici! 
+
+        - const grades = {"web dev":85, "sofware design": 76}
+        each grade, i in grades
+            p=grade + " - " + i
